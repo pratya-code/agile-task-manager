@@ -1,0 +1,23 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: agile-task-manager-db
+    restart: always
+    environment:
+      POSTGRES_USER: agile_user
+      POSTGRES_PASSWORD: agile_password
+      POSTGRES_DB: agile_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+volumes:
+  postgres_data:
+
+networks:
+  app-network:
+    driver: bridge
+
